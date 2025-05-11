@@ -9,8 +9,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Student;
 import model.StudentData;
-
 import java.time.LocalDate;
+import static model.StudentData.generateStudentId;
 
 public class RegisterFormController {
 
@@ -67,14 +67,14 @@ public class RegisterFormController {
             return;
         }
 
-        //--- Create & Register Students & Save to DB
+        //--- Create & Register Students
         Student student = new Student(id, name, email, password, dob, gender);
-        model.StudentDAO.saveStudent(student);
+        StudentData.registerStudent(student);
 
         showAlert(Alert.AlertType.INFORMATION, "Registration successful!");
         clearForm();
 
-        // Navigate to Login
+        //--- Navigate to Login
         Parent root = FXMLLoader.load(getClass().getResource("/view/loginForm.fxml"));
         Stage stage = (Stage) txt_StudentId.getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -82,11 +82,11 @@ public class RegisterFormController {
     }
 
     @FXML
-    public void initialize(){
-        //--- Gender ComboBox Values
+    public void initialize() {
         genderComboBox.getItems().addAll("Male", "Female", "Other");
+        txt_StudentId.setText(generateStudentId());
 
-        //--- Move Cursor to next Text Fields when Enter is Pressed
+        // Move focus on Enter
         txt_StudentId.setOnAction(e -> txt_Name.requestFocus());
         txt_Name.setOnAction(e -> txt_Email.requestFocus());
         txt_Email.setOnAction(e -> txt_Password.requestFocus());
@@ -94,6 +94,7 @@ public class RegisterFormController {
         txt_ConfirmPassword.setOnAction(e -> dobPicker.requestFocus());
         dobPicker.setOnAction(e -> genderComboBox.requestFocus());
     }
+
 
     private void showAlert(Alert.AlertType type, String message){
         Alert alert = new Alert(type);
@@ -103,7 +104,7 @@ public class RegisterFormController {
     }
 
     private void clearForm(){
-        txt_StudentId.clear();
+        txt_StudentId.setText(generateStudentId());
         txt_Name.clear();
         txt_Email.clear();
         txt_Password.clear();

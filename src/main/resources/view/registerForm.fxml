@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="500" prefWidth="400" style="-fx-background-color: #FFFBCA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterFormController">
+<AnchorPane prefHeight="500" prefWidth="400" style="-fx-background-color: #E8F5E9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterFormController">
    <Rectangle fill="#77b254" height="54.0" layoutY="-1.0" strokeType="INSIDE" strokeWidth="0.0" width="400.0" />
 
     <!-- Title -->
